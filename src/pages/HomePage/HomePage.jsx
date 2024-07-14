@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
-import { fetchTrendingMovies } from "../../films-api";
+import MovieList from "../../components/MovieList/MovieList";
+import Novigation from "../../components/Navigation/Novigation";
 const HomePage = () => {
-  const [movie, setMovie] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function fetchTrending() {
-      try {
-        setError(null);
-        await fetchTrendingMovies () {};
-      } catch {
-      } 
-    }
-    fetchTrending();
-  }, []);
-
-  return <></>;
+  return (
+    <>
+      <Novigation />
+      <h1>Trending today</h1>
+      <MovieList />
+    </>
+  );
 };
 export default HomePage;
