@@ -1,4 +1,4 @@
-import { NavLink, Route,Routes } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import css from "../../pages/HomePage/HomePage.module.css";
 
@@ -14,9 +14,7 @@ const Novigation = () => {
                 <NavLink to="/" className={buildLimkClass}>Home</NavLink>
                 <NavLink to="/movies" className={buildLimkClass}>Movies</NavLink>
             </nav>
-            <Routes>
-                <Route/>
-            </Routes>
+           
         </div>
     )
 };
