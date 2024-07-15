@@ -1,9 +1,12 @@
 import axios from "axios";
 const BASE_URL = "https://api.themoviedb.org/3/";
 axios.defaults.baseURL = BASE_URL;
-const API_KEY = "6c2ca8c654d328e5dbebd1de7d5a9429";
-const PER_PAGE = 20;
-// "https://api.themoviedb.org/3/movie/11?api_key=API_KEY";
+axios.defaults.params = {
+  api_key: "6c2ca8c654d328e5dbebd1de7d5a9429",
+};
+// axios.defaults.headers.common.Authorization =
+//   "BearereyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2YzJjYThjNjU0ZDMyOGU1ZGJlYmQxZGU3ZDVhOTQyOSIsIm5iZiI6MTcyMDkzNTExOC43NDkwOTksInN1YiI6IjY2OTJiMzA4OGRjNWIxZDU0MGFkMjRkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qiB8ok6rWZvIjzmFNK5Nmim4KEnjKAzO3UfC9Vib3to";
+
 // const options = {
 //   headers: {
 //     Authorization:
@@ -12,9 +15,7 @@ const PER_PAGE = 20;
 // };
 
 export const fetchTrendingMovies = async () => {
-  const { data } = await axios.get(
-    `trending/movie/day?language=en-US&api_key=${API_KEY}&${PER_PAGE}`
-  );
+  const { data } = await axios.get(`trending/movie/day`);
   return data;
 };
 

@@ -5,7 +5,6 @@ const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [page, setPages] = useState(1);
 
   useEffect(() => {
     async function fetchTrending() {
@@ -13,7 +12,7 @@ const MovieList = () => {
         setError(false);
         const { results } = await fetchTrendingMovies();
         setMovies((prevMovies) => [...prevMovies, ...results]);
-        setVisible();
+        setVisible(true);
       } catch {
         setError(true);
       }
@@ -21,6 +20,17 @@ const MovieList = () => {
     fetchTrending();
   }, []);
 
-  return { movies } && <ul></ul>, { error } && <p>Opps</p>;
+  return (
+    <>
+      {visible && (
+        <ul>
+          {movies.map((movie) => (
+            <li key={movie.id}>{movie.title} </li>
+          ))}
+        </ul>
+      )}
+      ,{error && <p>Opps</p>}
+    </>
+  );
 };
 export default MovieList;
