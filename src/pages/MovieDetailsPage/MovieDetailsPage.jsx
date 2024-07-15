@@ -1,9 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 
 const MovieDetailsPage = () => {
+  const { movieId } = useParams();
   return (
     <>
-      <h1>MovieDetailsPage</h1>
+      <h1>MovieDetailsPage {movieId}</h1>
       <Outlet />
     </>
   );

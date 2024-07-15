@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { fetchTrendingMovies } from "../../films-api";
+// import { Link } from "react";
 
-const MovieList = ({ data }) => {
+const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
-  // const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     async function fetchTrending() {
@@ -12,7 +12,7 @@ const MovieList = ({ data }) => {
         setError(false);
         const { results } = await fetchTrendingMovies();
         setMovies((prevMovies) => [...prevMovies, ...results]);
-        // setVisible(true);
+        setMovies(results);
       } catch {
         setError(true);
       }
@@ -22,13 +22,15 @@ const MovieList = ({ data }) => {
 
   return (
     <>
-      {movies > 0 && (
+      {/* <Link to ="/movies/${movie.id}">  */}
+      {movies.length > 0 && (
         <ul>
-          {data.map((title) => (
-            <li key={title.id}>{title.title} </li>
+          {movies.map((movie) => (
+            <li key={movie.id}>{movie.title} </li>
           ))}
         </ul>
       )}
+      {/* <Link/> */}
       {error && <p>Opps</p>}
     </>
   );
