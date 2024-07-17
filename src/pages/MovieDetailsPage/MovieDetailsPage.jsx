@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../films-api";
 import css from "./MovieDetailsPage.module.css";
 
@@ -48,6 +48,18 @@ const MovieDetailsPage = () => {
           </div>
         </div>
       )}
+      <Outlet />
+      <div className={css.containerAdd}>
+        <p className={css.textAdditional}>Additional information</p>
+        <ul>
+          <li>
+            <Link to="cast">Cast</Link>
+          </li>
+          <li>
+            <Link to="reviews">Reviews</Link>
+          </li>
+        </ul>
+      </div>
       <Outlet />
     </>
   );
