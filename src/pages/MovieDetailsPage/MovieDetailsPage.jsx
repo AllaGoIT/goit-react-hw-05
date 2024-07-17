@@ -14,7 +14,6 @@ export const MovieDetailsPage = () => {
         setError(false);
         const { results } = await fetchMovieDetails(movieId);
         setMovies((prevMovies) => [...prevMovies, ...results]);
-        setMovies(results);
       } catch {
         setError(true);
       }
@@ -25,7 +24,14 @@ export const MovieDetailsPage = () => {
   return (
     <>
       {/* <h1>MovieDetailsPage {movieId}</h1> */}
-      {movies.length > 0 && (<h1{movies.map((movie))}></h1>)}
+      {movies.length > 0 && (
+        <div>
+          {movies.map((movie) => (
+            <h1 key={movie.id}>{}</h1>
+          ))}
+          {error && <p>Opps! Error!</p>}
+        </div>
+      )}
       <Outlet />
     </>
   );
