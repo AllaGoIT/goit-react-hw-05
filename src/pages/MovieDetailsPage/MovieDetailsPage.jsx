@@ -2,14 +2,13 @@ import { useState, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../films-api";
 import css from "./MovieDetailsPage.module.css";
-// import { useSearchParams } from "react-router-dom";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(false);
-  // const [searchParams] = useSearchParams();
-  // const genres = searchParams.get("name");
+  // const [clicks, setClicks] = useState(0);
+
   useEffect(() => {
     async function fetchMoviesDetails() {
       try {
@@ -25,6 +24,9 @@ const MovieDetailsPage = () => {
 
   return (
     <>
+      <button type="button" className={css.btn}>
+        Go back
+      </button>
       {movies && (
         <div className={css.container}>
           <img
@@ -32,13 +34,16 @@ const MovieDetailsPage = () => {
             src={`https://image.tmdb.org/t/p/w500/${movies.poster_path}`}
           />
           <div className={css.containerText}>
-            <h1>{movies.original_title}</h1>
-            <p>User Score:{movies.popularity}</p>
-            <p className={css.textOver}>
-              <span className={css.overview}> Overview</span> <br />
-              {movies.overview}
+            <h1 className={css.title}>{movies.original_title}</h1>
+            <p className={css.userScore}>
+              User Score:
+              {Math.round(movies.popularity / movies.vote_count)}%
             </p>
-            <p>Genres{movies.genres.name}</p>
+            <p>
+              <span className={css.overview}> Overview</span>
+            </p>
+            <p className={css.textOver}>{movies.overview}</p>
+            <p className={css.genres}>Genres{movies.genres.name}</p>
             {error && <p>Opps! Error!</p>}
           </div>
         </div>
