@@ -27,7 +27,7 @@ export const MovieDetailsPage = () => {
       {movies.length > 0 && (
         <div>
           {movies.map((movie) => (
-            <h1 key={movie.id}>{}</h1>
+            <h1 key={movie.id}>{movie}</h1>
           ))}
           {error && <p>Opps! Error!</p>}
         </div>
