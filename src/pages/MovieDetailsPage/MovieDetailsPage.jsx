@@ -5,7 +5,7 @@ import { fetchMovieDetails } from "../../films-api";
 export const MovieDetailsPage = () => {
   const { movieId } = useParams();
 
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -24,8 +24,8 @@ export const MovieDetailsPage = () => {
 
   return (
     <>
-      <h1>MovieDetailsPage {movieId}</h1>
-      {/* {movies.length > 0 && (<h1{movies.map((movie))}></h1>)} */}
+      {/* <h1>MovieDetailsPage {movieId}</h1> */}
+      {movies.length > 0 && (<h1{movies.map((movie))}></h1>)}
       <Outlet />
     </>
   );
