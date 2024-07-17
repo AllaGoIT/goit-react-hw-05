@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../films-api";
 
-export const MovieDetailsPage = () => {
+const MovieDetailsPage = () => {
   const { movieId } = useParams();
 
   const [movies, setMovies] = useState(null);
@@ -13,7 +13,7 @@ export const MovieDetailsPage = () => {
       try {
         setError(false);
         const { results } = await fetchMovieDetails(movieId);
-        setMovies((prevMovies) => [...prevMovies, ...results]);
+        setMovies(results);
       } catch {
         setError(true);
       }
@@ -23,12 +23,13 @@ export const MovieDetailsPage = () => {
 
   return (
     <>
-      {/* <h1>MovieDetailsPage {movieId}</h1> */}
-      {movies.length > 0 && (
+      {movies > 0 && (
         <div>
-          {movies.map((movie) => (
-            <h1 key={movie.id}>{movie}</h1>
-          ))}
+          <h1>{movies.original_title}</h1>
+          <img src={movies.poster_path} />
+          <p>{movies.popularity}</p>
+          <p>Overview{movies.overview}</p>
+          <p>Genres{movies.genres.name}</p>
           {error && <p>Opps! Error!</p>}
         </div>
       )}
@@ -36,3 +37,4 @@ export const MovieDetailsPage = () => {
     </>
   );
 };
+export default MovieDetailsPage;
