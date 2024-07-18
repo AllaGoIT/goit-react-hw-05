@@ -10,10 +10,10 @@ const MovieReviews = () => {
     async function fetchMoviesReviews() {
       try {
         setError(false);
+        const results = await fetchMovieReviews(movieId);
+        setMovies(results.crew);
       } catch {
         setError(true);
-        const results = await fetchMovieReviews(movieId);
-        setMovies(results);
       }
     }
     fetchMoviesReviews();

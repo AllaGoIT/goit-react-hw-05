@@ -1,23 +1,26 @@
 import { fetchMovieCredits } from "../../films-api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 const MovieCast = () => {
   const { movieId } = useParams();
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(false);
+
   useEffect(() => {
     if (!movieId) return;
     async function fetchMoviesCredits() {
       try {
         setError(false);
+        const results = await fetchMovieCredits(movieId);
+        setMovies(results.cast);
       } catch {
         setError(true);
-        const results = await fetchMovieCredits(movieId);
-        setMovies(results);
       }
     }
     fetchMoviesCredits();
   }, [movieId]);
+
   return (
     <>
       {movies && (
