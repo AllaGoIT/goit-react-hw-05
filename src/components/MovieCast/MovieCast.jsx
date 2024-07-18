@@ -6,6 +6,7 @@ const MovieCast = () => {
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(false);
   useEffect(() => {
+    if (!movieId) return;
     async function fetchMoviesCredits() {
       try {
         setError(false);

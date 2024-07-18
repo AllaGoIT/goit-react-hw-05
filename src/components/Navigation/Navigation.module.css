@@ -1,7 +1,12 @@
+.container {
+  margin-top: 15px;
+  margin-left: 15px;
+}
 .link {
   text-decoration: none;
   margin-right: 5px;
   color: black;
+  margin-top: 20px;
 }
 
 .active {

@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
-import css from "../../components/Navigation/Novigation.module.css";
+import css from "../../components/Navigation/Navigation.module.css";
 
 const buildLimkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
 };
 
-const Novigation = () => {
+const Navigation = () => {
   return (
-    <div>
+    <div className={css.container}>
       <nav>
         <NavLink to="/" className={buildLimkClass}>
           Home
@@ -21,4 +21,4 @@ const Novigation = () => {
   );
 };
 
-export default Novigation;
+export default Navigation;

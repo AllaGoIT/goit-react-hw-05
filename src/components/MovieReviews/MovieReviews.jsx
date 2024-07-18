@@ -6,6 +6,7 @@ const MovieReviews = () => {
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(false);
   useEffect(() => {
+    if (!movieId) return;
     async function fetchMoviesReviews() {
       try {
         setError(false);
