@@ -7,7 +7,6 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(false);
-  // const [clicks, setClicks] = useState(0);
 
   useEffect(() => {
     async function fetchMoviesDetails() {

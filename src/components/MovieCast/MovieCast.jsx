@@ -1,10 +1,11 @@
 import { fetchMovieCredits } from "../../films-api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import css from "../MovieCast/MovieCast.module.css";
 
 const MovieCast = () => {
   const { movieId } = useParams();
-  const [movies, setMovies] = useState(null);
+  const [cast, setCast] = useState([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ const MovieCast = () => {
       try {
         setError(false);
         const results = await fetchMovieCredits(movieId);
-        setMovies(results.cast);
+        setCast(results.cast);
       } catch {
         setError(true);
       }
@@ -22,14 +23,23 @@ const MovieCast = () => {
   }, [movieId]);
 
   return (
-    <>
-      {movies && (
-        <div>
-          <img src={`https://image.tmdb.org/t/p/w500/${movies}`} alt="" />
-        </div>
-      )}
+    <div className={css.container}>
+      <ul className={css.ul}>
+        {cast.map((item) => (
+          <li key={item.id}>
+            <img
+              width={70}
+              height={100}
+              src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+              alt={item.name}
+            />
+            <p className={css.name}>{item.name}</p>
+          </li>
+        ))}
+      </ul>
+
       {error && <p>Opps! Error!</p>}
-    </>
+    </div>
   );
 };
 export default MovieCast;
