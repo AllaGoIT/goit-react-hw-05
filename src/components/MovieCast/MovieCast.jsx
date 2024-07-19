@@ -28,6 +28,7 @@ const MovieCast = () => {
         {cast.map((item) => (
           <li key={item.id}>
             <img
+              className={css.img}
               width={70}
               height={100}
               src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
