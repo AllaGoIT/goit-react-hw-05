@@ -4,11 +4,15 @@
 }
 
 .ul {
-  list-style: none;
+  list-style-type: square;
 }
 
 .name {
   padding-top: 5px;
+  font-family: Arial sans-serif;
+  font-size: 12px;
+  line-height: 1.5; /* 150% */
+  letter-spacing: 0.02em;
 }
 .img {
   padding-top: 5px;

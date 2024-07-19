@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 const MovieReviews = () => {
   const { movieId } = useParams();
-  const [movies, setMovies] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const [error, setError] = useState(false);
   useEffect(() => {
     if (!movieId) return;
@@ -11,7 +11,7 @@ const MovieReviews = () => {
       try {
         setError(false);
         const results = await fetchMovieReviews(movieId);
-        setMovies(results);
+        setReviews(results);
       } catch {
         setError(true);
       }
@@ -20,11 +20,14 @@ const MovieReviews = () => {
   }, [movieId]);
   return (
     <>
-      {movies && (
-        <div>
-          <p>ghfgh</p>
-        </div>
-      )}
+      <ul>
+        {reviews.map((review) => (
+          <li key={review.id}>
+            <p>{review.author}</p>
+            <p>{review.content}</p>
+          </li>
+        ))}
+      </ul>
       {error && <p>Opps! Error!</p>}
     </>
   );

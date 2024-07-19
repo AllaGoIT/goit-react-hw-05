@@ -42,3 +42,7 @@
 .textAdditional {
   margin-bottom: 15px;
 }
+
+.linkReviews {
+  list-style-type: square;
+}

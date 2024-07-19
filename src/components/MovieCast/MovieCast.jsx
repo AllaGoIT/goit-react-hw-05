@@ -27,6 +27,7 @@ const MovieCast = () => {
       <ul className={css.ul}>
         {cast.map((item) => (
           <li key={item.id}>
+            <p className={css.name}>{item.name}</p>
             <img
               className={css.img}
               width={70}
@@ -34,7 +35,6 @@ const MovieCast = () => {
               src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
               alt={item.name}
             />
-            <p className={css.name}>{item.name}</p>
           </li>
         ))}
       </ul>

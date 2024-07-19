@@ -54,7 +54,7 @@ const MovieDetailsPage = () => {
           <li>
             <Link to="cast">Cast</Link>
           </li>
-          <li>
+          <li className={css.linkReviews}>
             <Link to="reviews">Reviews</Link>
           </li>
         </ul>
