@@ -21,7 +21,8 @@ const MovieCast = () => {
     }
     fetchMoviesCredits();
   }, [movieId]);
-
+  const defaultImg =
+    "https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster";
   return (
     <div className={css.container}>
       <ul className={css.ul}>
@@ -32,7 +33,12 @@ const MovieCast = () => {
               className={css.img}
               width={70}
               height={100}
-              src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+              // src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+              src={
+                item.profile_path
+                  ? `https://image.tmdb.org/t/p/w500/${item.profile_path}`
+                  : defaultImg
+              }
               alt={item.name}
             />
           </li>

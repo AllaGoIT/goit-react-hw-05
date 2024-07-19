@@ -46,3 +46,7 @@
 .linkReviews {
   list-style-type: square;
 }
+
+.ul {
+  padding-left: 15px;
+}

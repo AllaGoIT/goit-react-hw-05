@@ -47,10 +47,10 @@ const MovieDetailsPage = () => {
           </div>
         </div>
       )}
-      <Outlet />
+
       <div className={css.containerAdd}>
         <p className={css.textAdditional}>Additional information</p>
-        <ul>
+        <ul className={css.ul}>
           <li>
             <Link to="cast">Cast</Link>
           </li>
