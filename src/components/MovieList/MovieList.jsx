@@ -2,11 +2,18 @@ import { useState, useEffect } from "react";
 import { fetchTrendingMovies } from "../../films-api";
 import { Link } from "react-router-dom";
 import css from "../MovieList/MovieList.module.css";
+import { useSearchParams } from "react-router-dom";
+import SearchForm from "../SearchForm/SearchForm";
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const movieFilter = searchParams.get("movie") ?? "";
+  const changeMovieFilter = (newMovie) => {
+    searchParams.set("movie", newMovie);
+    setSearchParams(searchParams);
+  };
   useEffect(() => {
     async function fetchTrending() {
       try {
@@ -21,6 +28,10 @@ const MovieList = () => {
     fetchTrending();
   }, []);
 
+  const filterMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(movieFilter.toLowerCase())
+  );
+
   return (
     <div className={css.container}>
       {movies.length > 0 && (
@@ -32,7 +43,7 @@ const MovieList = () => {
           ))}
         </ul>
       )}
-
+      <SearchForm onSearch={changeMovieFilter} onFilter={filterMovies} />
       {error && <p>Opps</p>}
     </div>
   );

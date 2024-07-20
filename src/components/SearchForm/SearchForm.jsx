@@ -1,7 +1,7 @@
-const SearchForm = ({ onSearch }) => {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+const SearchForm = ({ onSearch, onFilter }) => {
+  // const [movies, setMovies] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.PreventDefault();
@@ -12,6 +12,7 @@ const SearchForm = ({ onSearch }) => {
       return;
     }
     onSearch(topicMovies);
+    onFilter(topicMovies);
     form.reset();
   };
 
