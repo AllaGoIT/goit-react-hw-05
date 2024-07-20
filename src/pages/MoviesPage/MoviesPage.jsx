@@ -9,7 +9,7 @@ const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState("");
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
 
   const movieFilter = searchParams.get("movie") ?? "";
   const changeMovieFilter = (newMovie) => {
@@ -23,7 +23,7 @@ const MoviesPage = () => {
         setError(false);
         const { results, total_pages } = await fetchSearchMovie(query);
         setMovies((prevMovies) => [...prevMovies, ...results]);
-        setVisible(total_pages > 0);
+        setQuery(total_pages > 0);
       } catch {
         setError(true);
       }
@@ -31,28 +31,27 @@ const MoviesPage = () => {
     fetchSearchMovies();
   }, [query]);
 
-  const addMovies = (value) => {
-    setQuery(value);
-    setMovies([]);
-  };
+  // const addMovies = (value) => {
+  //   setQuery(value);
+  //   setMovies([]);
+  // };
 
   const filterMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(movieFilter.toLowerCase())
   );
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    setSearchParams({ moviesname: form.elements.name.value });
-    form.reset();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const form = e.currentTarget;
+  //   setSearchParams({ moviesname: form.elements.name.value });
+  //   form.reset();
+  // };
+  const handleSubmit = (value) => {
+    setSearchParams({ query: value });
   };
   return (
     <>
-      <SearchForm
-        onSearch={changeMovieFilter}
-        onFilter={filterMovies}
-        onSubmit={handleSubmit}
-      />
-      {visible && <MovieList onAdd={addMovies} />}
+      <SearchForm onSearch={changeMovieFilter} onSubmit={handleSubmit} />
+      {query && <MovieList movies={filterMovies} />}
       {error && <p>Opps</p>}
     </>
   );

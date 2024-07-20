@@ -28,7 +28,7 @@ const MovieList = ({ onAdd }) => {
           {movies.map((movie) => (
             <li key={movie.id} className={css.link}>
               <Link to={`/movies/${movie.id}`} onAdd={onAdd}>
-                {movie.title}{" "}
+                {movie.title}
               </Link>
             </li>
           ))}
