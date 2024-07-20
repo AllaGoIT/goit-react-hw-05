@@ -22,13 +22,13 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const location = useLocation();
-  const backLinkUrl = useRef(location.state ?? "/");
+  const goBack = useRef(location?.state ?? "/");
 
   return (
     <>
-      <button type="button" className={css.btn}>
-        Go back {backLinkUrl.current}
-      </button>
+      <Link to={goBack.current} className={css.btn}>
+        Go back
+      </Link>
       {movies && (
         <div className={css.container}>
           <img

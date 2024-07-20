@@ -29,11 +29,11 @@
 .title {
   padding-top: 20px;
 }
-.btn {
+/* .btn {
   margin-bottom: 0;
   margin-left: 10px;
   margin-top: 2px;
-}
+} */
 .containerAdd {
   padding-left: 25px;
   margin-top: 30px;
@@ -49,4 +49,17 @@
 
 .ul {
   padding-left: 15px;
+}
+
+.btn {
+  margin-left: 5px;
+  width: 50px;
+  height: 30px;
+  color: black;
+  background-color: rgb(175, 173, 173);
+  text-decoration: none;
+  border-radius: 2px;
+  font-size: smaller;
+  padding-left: 5px;
+  padding-right: 5px;
 }
