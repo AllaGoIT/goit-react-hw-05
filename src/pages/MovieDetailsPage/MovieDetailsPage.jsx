@@ -45,7 +45,16 @@ const MovieDetailsPage = () => {
               <span className={css.overview}> Overview</span>
             </p>
             <p className={css.textOver}>{movies.overview}</p>
-            <p className={css.genres}>Genres{movies.genres.name}</p>
+            {/* <p className={css.genres}>Genres{movies.genres.name}</p> */}
+            <p>
+              <span className={css.genres}>Genres</span>
+            </p>
+            {movies.genres.map((item) => (
+              <li className={css.listGenres} key={item.id}>
+                <p>{item.name}</p>
+              </li>
+            ))}
+
             {error && <p>Opps! Error!</p>}
           </div>
         </div>
