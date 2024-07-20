@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { fetchSearchMovie } from "../../films-api";
 import { useSearchParams } from "react-router-dom";
 import SearchForm from "../../components/SearchForm/SearchForm";
+import { useMemo } from "react";
 
 const MoviesPage = () => {
   const [error, setError] = useState(false);
@@ -36,9 +37,12 @@ const MoviesPage = () => {
   //   setMovies([]);
   // };
 
-  const filterMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(movieFilter.toLowerCase())
-  );
+  const filterMovies = useMemo(() => {
+    return movies.filter((movie) =>
+      movie.title.toLowerCase().includes(movieFilter.toLowerCase())
+    );
+  }, [movieFilter, movies]);
+
   // const handleSubmit = (e) => {
   //   e.preventDefault();
   //   const form = e.currentTarget;
