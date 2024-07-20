@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link, Outlet, useParams, useLocation } from "react-router-dom";
 import { fetchMovieDetails } from "../../films-api";
 import css from "./MovieDetailsPage.module.css";
 
@@ -21,10 +21,13 @@ const MovieDetailsPage = () => {
     fetchMoviesDetails();
   }, [movieId]);
 
+  const location = useLocation();
+  const backLinkUrl = useRef(location.state ?? "/");
+
   return (
     <>
       <button type="button" className={css.btn}>
-        Go back
+        Go back {backLinkUrl.current}
       </button>
       {movies && (
         <div className={css.container}>
