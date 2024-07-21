@@ -1,25 +1,8 @@
-import { useState, useEffect } from "react";
-import { fetchTrendingMovies } from "../../films-api";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import css from "../MovieList/MovieList.module.css";
 
-const MovieList = ({ onAdd }) => {
-  const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    async function fetchTrending() {
-      try {
-        setError(false);
-        const { results } = await fetchTrendingMovies();
-        setMovies((prevMovies) => [...prevMovies, ...results]);
-        setMovies(results);
-      } catch {
-        setError(true);
-      }
-    }
-    fetchTrending();
-  }, []);
+const MovieList = ({ movies }) => {
+  const location = useLocation();
 
   return (
     <div className={css.container}>
@@ -27,14 +10,13 @@ const MovieList = ({ onAdd }) => {
         <ul className={css.ul}>
           {movies.map((movie) => (
             <li key={movie.id} className={css.link}>
-              <Link to={`/movies/${movie.id}`} onAdd={onAdd}>
+              <Link to={`/movies/${movie.id}`} state={location}>
                 {movie.title}
               </Link>
             </li>
           ))}
         </ul>
       )}
-      {error && <p>Opps</p>}
     </div>
   );
 };

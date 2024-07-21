@@ -45,7 +45,6 @@ const MovieDetailsPage = () => {
               <span className={css.overview}> Overview</span>
             </p>
             <p className={css.textOver}>{movies.overview}</p>
-            {/* <p className={css.genres}>Genres{movies.genres.name}</p> */}
             <p>
               <span className={css.genres}>Genres</span>
             </p>

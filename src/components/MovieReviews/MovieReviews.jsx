@@ -14,7 +14,6 @@ const MovieReviews = () => {
         setError(false);
         const { results } = await fetchMovieReviews(movieId);
         setReviews(results);
-        // console.log(results);
       } catch {
         setError(true);
       }
